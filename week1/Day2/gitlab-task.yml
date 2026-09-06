@@ -1,0 +1,36 @@
+# .gitlab0ci,yml
+
+stages:
+  - build
+  - test
+  - package
+
+image: maven:3.8.1-jdk-17
+
+maven-build:
+  stage: build
+
+  script:
+    - mvn clean compile
+
+  artifacts:
+    paths:
+      - target/
+    expire_in: 1 hour
+
+maven-test:
+  stage: test
+
+  script:
+    - mvn test
+
+maven-package:
+  stage: package
+
+  script:
+    - mvn package
+
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 week

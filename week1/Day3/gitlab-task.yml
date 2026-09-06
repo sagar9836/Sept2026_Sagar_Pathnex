@@ -1,0 +1,31 @@
+# .gitlab-ci.yml
+
+stages:
+  - install
+  - test
+  - build
+
+image: node:16
+
+node-install:
+  stage: install
+
+  script:
+    - npm install
+
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+
+node-test:
+  stage: test
+
+  script:
+    - npm test
+
+node-build:
+  stage: build
+
+  script:
+    - npm run build

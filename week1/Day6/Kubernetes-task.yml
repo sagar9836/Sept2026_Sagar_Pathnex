@@ -1,0 +1,12 @@
+# pod.yaml
+
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: pathnex
+
+spec:
+  containers:
+    - name: app
+      image: nginx

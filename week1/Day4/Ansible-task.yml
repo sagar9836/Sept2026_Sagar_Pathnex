@@ -1,0 +1,14 @@
+# install-packages.yml
+
+---
+- name: Install packages for Pathnex
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install tools
+      yum:
+        name:
+          - git
+          - wget
+        state: present
