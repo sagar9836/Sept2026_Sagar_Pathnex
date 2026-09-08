@@ -1,0 +1,17 @@
+--- 
+- name: Install packages for Pathnex using variables
+  hosts: all
+  become: yes
+
+  vars:
+    pathnex_packages:
+      - tree
+      - unzip
+      - vim
+  
+  tasks:
+    - name: Install required packages
+      yum:
+        name: "{{ pathnex_packages }}"
+        state: present
+        
