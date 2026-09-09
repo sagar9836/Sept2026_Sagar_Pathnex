@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Configmap
+
+metadata: 
+  name: pathnex-config
+
+data: 
+  APP_MODE: "production"
+  WELCOME_MSG: "Hello Pathnex"
