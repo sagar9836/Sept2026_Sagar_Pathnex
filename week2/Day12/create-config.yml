@@ -1,0 +1,13 @@
+---
+- name: Create config file for Pathnex
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Write content to file
+      copy:
+        dest: /etc/pathnex/conf
+        content: |
+          Welcome to Pathnex DevOps Training
+          Today is Day 12
+          
