@@ -1,0 +1,10 @@
+---
+- name: Broken
+  hosts: all
+  become: yes
+
+  tasks: 
+    - name: Install
+      yum: 
+        name: nginx
+        state: present
