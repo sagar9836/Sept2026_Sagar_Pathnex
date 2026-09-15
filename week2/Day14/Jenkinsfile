@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+    }
+
+    triggers {
+        cron('H 2 * * *')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Pathnex/sample-java-app.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
