@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = "Pathnex"
+        SLACK_CHANNEL = "#devops"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Pathnex/sample-java-app.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+
+    post {
+        success {
+            slackSend(
+                channel: "${SLACK_CHANNEL}",
+                message: "SUCCESS: ${INSTITUTE_NAME} Build #${env.BUILD_NUMBER}"
+            )
+        }
+
+        failure {
+            slackSend(
+                channel: "${SLACK_CHANNEL}",
+                message: "FAILURE: ${INSTITUTE_NAME} Build #${env.BUILD_NUMBER}"
+            )
+        }
+    }
+}
