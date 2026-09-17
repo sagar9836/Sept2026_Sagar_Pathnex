@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pathnex-namespace
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pathnex-deploy
+  namespace: pathnex-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pathnex
+  template:
+    metadata:
+      labels:
+        app: pathnex
+    spec:
+      containers:
+        - name: app
+          image: nginx
