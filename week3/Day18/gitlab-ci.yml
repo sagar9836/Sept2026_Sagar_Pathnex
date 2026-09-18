@@ -1,0 +1,14 @@
+stages:
+  - deploy
+
+variables:
+  INSTITUTE_NAME: "Pathnex"
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying $INSTITUTE_NAME application..."
+    - exit 1 # Simulate deployment failure.
+  after_script:
+    - echo "Deployment failed. Rolling back $INSTITUTE_NAME application..."

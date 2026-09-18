@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = 'Pathnex'
+    }
+
+    stages {
+        stage('Deploy') {
+            steps {
+                script {
+                    try {
+                        sh 'echo "Deploying $INSTITUTE_NAME application..."'
+                        sh 'exit 1' // Simulate deployment failure.
+                    } catch (Exception e) {
+                        echo "Deployment failed. Rolling back $INSTITUTE_NAME application..."
+                    }
+                }
+            }
+        }
+    }
+}
