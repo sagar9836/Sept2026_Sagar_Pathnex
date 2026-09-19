@@ -1,0 +1,15 @@
+---
+- name: Deploy app from Git for Pathnex
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Git
+      ansible.builtin.yum:
+        name: git
+        state: present
+
+    - name: Clone Pathnex application repository
+      ansible.builtin.git:
+        repo: https://github.com/pathnex/app.git
+        dest: /opt/pathnex-app

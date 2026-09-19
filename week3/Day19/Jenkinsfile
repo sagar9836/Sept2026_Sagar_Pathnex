@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = 'Pathnex'
+    }
+
+    stages {
+        stage('Deploy') {
+            steps {
+                input message: "Approve deployment for ${INSTITUTE_NAME}?"
+                sh 'echo "Deployment approved and executed!"'
+            }
+        }
+    }
+}
