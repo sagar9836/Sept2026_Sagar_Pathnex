@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pathnex-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pathnex-nginx
+  template:
+    metadata:
+      labels:
+        app: pathnex-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
