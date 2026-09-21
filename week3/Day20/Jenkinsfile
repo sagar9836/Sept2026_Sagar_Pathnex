@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    environment {
+        INSTITUTE_NAME = 'Pathnex'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Pathnex/sample-java-app.git'
+            }
+        }
+
+        stage('Use Secret') {
+            steps {
+                withCredentials([string(credentialsId: 'PATHNEX_API_KEY', variable: 'API_KEY')]) {
+                    sh 'test -n "$API_KEY" && echo "API key is available for $INSTITUTE_NAME"'
+                }
+            }
+        }
+    }
+}

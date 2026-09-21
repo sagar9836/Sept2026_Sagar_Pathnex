@@ -1,0 +1,10 @@
+---
+- name: Install Apache HTTP Server
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install httpd
+      ansible.builtin.yum:
+        name: httpd
+        state: present

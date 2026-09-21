@@ -1,0 +1,12 @@
+stages:
+  - build
+
+variables:
+  INSTITUTE_NAME: "Pathnex"
+
+build:
+  stage: build
+  image: alpine:latest
+  script:
+    - test -n "$API_KEY"
+    - echo "API key is available for $INSTITUTE_NAME"
