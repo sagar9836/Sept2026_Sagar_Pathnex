@@ -1,0 +1,22 @@
+---
+- name: Configure Nginx for Pathnex
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Copy Nginx config
+      ansible.builtin.copy:
+        dest: /etc/nginx/nginx.conf
+        content: |
+          user nginx;
+          worker_processes auto;
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Restart nginx
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

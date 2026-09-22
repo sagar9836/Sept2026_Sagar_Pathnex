@@ -1,0 +1,15 @@
+stages:
+  - build
+
+variables:
+  INSTITUTE_NAME: "Pathnex"
+  TEAM: "DevOps"
+  ENV: "prod"
+
+build:
+  stage: build
+  image: maven:3.8.1-jdk-17
+  script:
+    - echo "Building $INSTITUTE_NAME app for $TEAM team in $ENV environment"
+  only:
+    - tags
